@@ -25,6 +25,7 @@ public class InvoiceTest {
         foodItem.setPrice(3.5f);
         InvoiceItem item = new InvoiceItem();
         item.setItem(foodItem);
+        item.setQuantity(1);
         item.setInvoice(invoice);
         new InvoiceItemDao().saveInvoiceItem(item);
     }
