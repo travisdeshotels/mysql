@@ -6,20 +6,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="INVOICE")
+@Table(name="Invoice")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -27,18 +19,14 @@ import javax.persistence.Table;
 public class Invoice implements Serializable {
 	private static final long serialVersionUID = -5606066870734426992L;
 	@Id
-	@SequenceGenerator(name="INVOICE_SEQ", sequenceName="INVOICE_SEQ")
-	@GeneratedValue(generator="INVOICE_SEQ", strategy=GenerationType.SEQUENCE)
-	@Column(name="I_ID")
+	@GeneratedValue
+	@Column(name="Inv_ID")
 	private int id;
-	@JoinTable(name="I_STATUS",
-			joinColumns=@JoinColumn(name="I_STATUS"),
-			inverseJoinColumns=@JoinColumn(name="IS_ID"))
-	private String Status;
-	@Column(name="TOTAL")
+	@Column(name="Total")
 	private double total;
-	@ManyToOne
-	private ContactInfo contact;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="C_ID")
 	private Customer customer;
+	@OneToMany(mappedBy="invoice")
+	List<InvoiceItem> invoiceItems;
 }

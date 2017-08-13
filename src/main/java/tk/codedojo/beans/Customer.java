@@ -8,11 +8,7 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="Customer")
@@ -27,6 +23,9 @@ public class Customer extends User {
 	private String firstName;
 	@Column(name="L_NAME")
 	private String lastName;
-//	@OneToMany(mappedBy="customer")
-//	private List<Invoice> orders;
+	@OneToMany(mappedBy="customer")
+	private List<Invoice> orders;
+	@OneToOne
+	@JoinColumn(name="CI_ID")
+	private ContactInfo contactInfo;
 }

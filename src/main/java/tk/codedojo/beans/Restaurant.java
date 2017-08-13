@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,10 +23,10 @@ public class Restaurant implements Serializable{
 	private int id;
 	@Column(name="R_Name")
 	private String name;
+	@OneToMany(mappedBy="restaurant", fetch=FetchType.EAGER)
+	private List<FoodItem> menu;
 //	@OneToMany(mappedBy="restaurant", fetch=FetchType.EAGER)
-//	private List<FoodItem> menu = new ArrayList<FoodItem>();
-//	@OneToMany(mappedBy="restaurant", fetch=FetchType.EAGER)
-//	private List<Review> reviews = new ArrayList<>();
+//	private List<Review> reviews;
 	@OneToOne
 	@JoinColumn(name="CI_ID")
 	private ContactInfo address;
