@@ -15,7 +15,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CONTACT_INFO")
+@Table(name="Contact_Info")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -24,19 +24,18 @@ public class ContactInfo implements Serializable {
 	private static final long serialVersionUID = 7929748897411870510L;
 	@Id
 	@Column(name="CI_ID")
-	@SequenceGenerator(sequenceName="CI_ID_SEQ", name="CI_ID_SEQ")
-	@GeneratedValue(generator="CI_ID_SEQ", strategy=GenerationType.SEQUENCE)
+	@GeneratedValue
 	private int id;
-	@Column(name="STREET")
+	@Column(name="Street")
 	private String street;
-	@Column(name="CITY")
+	@Column(name="City")
 	private String city;
-	@Column(name="STATES")
+	@Column(name="State")
 	private String state;
-	@Column(name="ZIP")
+	@Column(name="Zip")
 	private String zip;
-	@Column(name="PHONE")
+	@Column(name="Phone")
 	private String phone;
-	@Column(name="EMAIL")
+	@Column(name="Email")
 	private String email;
 }

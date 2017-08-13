@@ -13,7 +13,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="MANAGERS")
+@Table
 @PrimaryKeyJoinColumn(name="M_ID")
 @Getter
 @Setter

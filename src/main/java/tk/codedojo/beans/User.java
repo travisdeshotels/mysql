@@ -20,7 +20,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="ACCOUNTS")
+@Table(name="Accounts")
 @Inheritance(strategy=InheritanceType.JOINED)
 @Getter
 @Setter
@@ -29,8 +29,7 @@ import javax.validation.constraints.NotNull;
 public abstract class User implements Serializable {
 	private static final long serialVersionUID = -5141943028394764957L;
 	@Id
-	@SequenceGenerator(name="ACCOUNT_SEQ", sequenceName="ACCOUNT_SEQ")
-	@GeneratedValue(generator="ACCOUNT_SEQ",strategy=GenerationType.SEQUENCE)
+	@GeneratedValue
 	@Column(name="A_ID")
 	private int userId;
 	@Column(name="U_NAME")
@@ -41,7 +40,7 @@ public abstract class User implements Serializable {
 	@Column(name="MY_SALT")
 	private String salt;
 
-	private int salt(String pw){
+	public int salt(String pw){
 		SecureRandom sr = new SecureRandom();
 		if(this.salt == null){
 			generateSalt();

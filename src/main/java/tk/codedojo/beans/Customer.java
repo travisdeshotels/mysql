@@ -15,7 +15,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="Customer")
 @PrimaryKeyJoinColumn(name="C_ID")
 @Getter
 @Setter
@@ -23,10 +23,10 @@ import javax.persistence.Table;
 @NoArgsConstructor
 public class Customer extends User {
 	private static final long serialVersionUID = 1951060451225640025L;
-	@Column(name="FIRST_NAME")
+	@Column(name="F_NAME")
 	private String firstName;
-	@Column(name="LAST_NAME")
+	@Column(name="L_NAME")
 	private String lastName;
-	@OneToMany(mappedBy="customer")
-	private List<Invoice> orders = new ArrayList<Invoice>();
+//	@OneToMany(mappedBy="customer")
+//	private List<Invoice> orders;
 }
