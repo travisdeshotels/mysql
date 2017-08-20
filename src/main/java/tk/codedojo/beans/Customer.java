@@ -25,7 +25,7 @@ public class Customer extends User {
 	private String lastName;
 	@OneToMany(mappedBy="customer")
 	private List<Invoice> orders;
-	@OneToOne
+	@OneToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name="CI_ID")
 	private ContactInfo contactInfo;
 }

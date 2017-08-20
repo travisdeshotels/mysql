@@ -27,7 +27,7 @@ public class Restaurant implements Serializable{
 	private List<FoodItem> menu;
 //	@OneToMany(mappedBy="restaurant", fetch=FetchType.EAGER)
 //	private List<Review> reviews;
-	@OneToOne
+	@OneToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name="CI_ID")
 	private ContactInfo address;
 }
