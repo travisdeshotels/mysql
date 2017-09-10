@@ -2,15 +2,19 @@ package tk.codedojo;
 
 import org.junit.Test;
 import tk.codedojo.beans.*;
-import tk.codedojo.dao.InvoiceItemDao;
-import tk.codedojo.dao.MasterDao;
+import tk.codedojo.dao.*;
+import tk.codedojo.exception.DuplicateUserNameException;
+
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class InvoiceItemTest {
     InvoiceItemDao dao = new InvoiceItemDao();
     MasterDao masterDao = new MasterDao();
 
     @Test
-    public void testSaveInvoiceItem(){
+    public void testSaveInvoiceItem() throws DuplicateUserNameException{
         masterDao.clearDB();
         InvoiceItem item = new InvoiceItem();
         Invoice invoice = new Invoice();
@@ -20,6 +24,59 @@ public class InvoiceItemTest {
         item.setInvoice(invoice);
 
         this.dao.saveInvoiceItem(item);
+        validateData();
+    }
+
+    private void validateData() throws DuplicateUserNameException{
+        CustomerDao customerDao = new CustomerDao();
+        Customer customer = customerDao.getCustomerByUserName("user");
+        validateCustomer(customer);
+
+        RestaurantDao restaurantDao = new RestaurantDao();
+        Restaurant restaurant = restaurantDao.getRestaurantByName("FOOD IS GOOD");
+        validateRestaurant(restaurant);
+    }
+
+
+    private void validateRestaurant(Restaurant restaurant){
+        ContactInfo contactInfo = restaurant.getAddress();
+        assertEquals(contactInfo.getStreet(), "123 street");
+        assertEquals(contactInfo.getCity(), "Washington");
+        assertEquals(contactInfo.getState(), "LA");
+        assertEquals(contactInfo.getZip(), "55555");
+        assertEquals(contactInfo.getEmail(), "food@aol.com");
+        assertEquals(contactInfo.getPhone(), "784");
+        List<FoodItem> foodItems = restaurant.getMenu();
+        FoodItem foodItem = foodItems.get(0);
+        assertEquals(foodItem.getPrice(), 2f, .1);
+        assertEquals(foodItem.getDescription(), "Tasty");
+        assertEquals(foodItem.getName(), "item");
+        assertEquals(foodItem.isSpecial(), true);
+        assertEquals(foodItem.isSoldOut(), false);
+    }
+
+    private void validateCustomer(Customer customer){
+        assertEquals(customer.getLastName(), "lastName");
+        assertEquals(customer.getFirstName(), "bob");
+
+        ContactInfo contactInfo = customer.getContactInfo();
+        assertEquals(contactInfo.getStreet(),"customer st");
+        assertEquals(contactInfo.getCity(), "Ville Platte");
+        assertEquals(contactInfo.getState(), "LA");
+        assertEquals(contactInfo.getZip(), "90201");
+        assertEquals(contactInfo.getEmail(), "e@ma.il");
+        assertEquals(contactInfo.getPhone(), "6");
+
+        validateInvoice(customer.getOrders().get(0));
+    }
+
+    private void validateInvoice(Invoice invoice){
+        assertEquals(invoice.getInvoiceItems().get(0).getItem().getRestaurant().getName(), "FOOD IS GOOD");
+        InvoiceItem invoiceItem = invoice.getInvoiceItems().get(0);
+        assertEquals(invoiceItem.getItem().getPrice(), 2f, .1);
+        assertEquals(invoiceItem.getItem().getDescription(), "Tasty");
+        assertEquals(invoiceItem.getItem().getName(), "item");
+        assertEquals(invoiceItem.getQuantity(), 1);
     }
 
     private FoodItem setFoodItem(Restaurant r){
@@ -68,7 +125,7 @@ public class InvoiceItemTest {
 
     private Customer setCustomer(ContactInfo info){
         Customer customer = new Customer();
-        customer.setUsername("user");
+        customer.setUserName("user");
         customer.setPassword(customer.salt("p4ssw0rd"));
         customer.setFirstName("bob");
         customer.setLastName("lastName");

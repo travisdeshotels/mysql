@@ -15,7 +15,7 @@ public class ManagerTest {
         r.setName("T-Coons");
         new RestaurantDao().saveRestaurant(r);
         Manager m = new Manager();
-        m.setUsername("myusername");
+        m.setUserName("myusername");
         m.setPassword(m.salt("p4ssw0rd"));
         m.setRestaurant(r);
         dao.saveManager(m);

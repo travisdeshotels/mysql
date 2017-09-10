@@ -13,7 +13,7 @@ public class CustomerTest {
     @Test
     public void testSaveCustomer(){
         Customer c = new Customer();
-        c.setUsername("bob");
+        c.setUserName("bob");
         c.setPassword(c.salt("p4ssw0rd"));
         c.setFirstName("bob");
         c.setLastName("pski");

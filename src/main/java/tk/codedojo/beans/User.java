@@ -33,7 +33,7 @@ public abstract class User implements Serializable {
 	@Column(name="A_ID")
 	private int userId;
 	@Column(name="U_NAME")
-	private String username;
+	private String userName;
 	@NotNull
 	@Column(name="P_WORD")
 	private int password;

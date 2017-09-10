@@ -27,7 +27,7 @@ public class RestaurantTest {
 
     @Test
     public void testGetRestaurant() {
-        Restaurant r = dao.getRestaurantByName("Test");
+        Restaurant r = dao.getRestaurantByName("IhazCI");
         assert r != null;
     }
 }

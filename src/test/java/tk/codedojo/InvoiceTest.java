@@ -12,7 +12,7 @@ public class InvoiceTest {
         invoice.setTotal(2f);
 
         Customer customer = new Customer();
-        customer.setUsername("me");
+        customer.setUserName("me");
         customer.setPassword(customer.salt("p4ssw0rd"));
         invoice.setCustomer(customer);
 
