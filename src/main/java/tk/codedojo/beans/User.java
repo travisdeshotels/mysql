@@ -1,35 +1,23 @@
 package tk.codedojo.beans;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.security.SecureRandom;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="Accounts")
 @Inheritance(strategy=InheritanceType.JOINED)
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public abstract class User implements Serializable {
 	private static final long serialVersionUID = -5141943028394764957L;
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="A_ID")
 	private int userId;
 	@Column(name="U_NAME")

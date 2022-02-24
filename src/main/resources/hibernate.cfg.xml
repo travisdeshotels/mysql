@@ -3,31 +3,16 @@
 <hibernate-configuration>
     <session-factory>
         <!-- Database Configuration -->
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
-        <property name="hibernate.connection.url">jdbc:mysql://192.168.2.5:3306/Food</property>
-        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.url">jdbc:mysql://192.168.0.167:3306/Food</property>
+        <property name="hibernate.connection.username"></property>
         <property name="hibernate.connection.password"></property>
         <property name="hibernate.connection.pool_size">35</property>
-
-        <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
-
+<!--        <property name="hibernate.hbm2ddl.auto">update</property>-->
         <property name="show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
-
-        <!-- We have to tell hibernate where our classes it maps are -->
-        <!--
-        <mapping class="tk.codedojo.beans.Review"/>
-        -->
-        <mapping class="tk.codedojo.beans.ContactInfo"/>
-        <mapping class="tk.codedojo.beans.Customer"/>
-        <mapping class="tk.codedojo.beans.FoodItem"/>
-        <mapping class="tk.codedojo.beans.Invoice"/>
-        <mapping class="tk.codedojo.beans.InvoiceItem"/>
-        <mapping class="tk.codedojo.beans.Manager"/>
-        <mapping class="tk.codedojo.beans.Restaurant"/>
-        <mapping class="tk.codedojo.beans.User"/>
         <!-- Example of an HBM FILE MAPPING -->
         <!-- <mapping resource="myObject.hbm.xml"/> -->
     </session-factory>

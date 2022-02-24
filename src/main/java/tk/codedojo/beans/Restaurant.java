@@ -6,20 +6,16 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
+@Data
 @Entity
 @Table(name="Restaurant")
 public class Restaurant implements Serializable{
 	private static final long serialVersionUID = 4524158945507038283L;
 	@Id
 	@Column(name="R_ID")
-    @GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name="R_Name")
 	private String name;

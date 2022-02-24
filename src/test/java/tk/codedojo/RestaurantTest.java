@@ -29,5 +29,6 @@ public class RestaurantTest {
     public void testGetRestaurant() {
         Restaurant r = dao.getRestaurantByName("IhazCI");
         assert r != null;
+        System.out.println(r.toString());
     }
 }

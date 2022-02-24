@@ -1,9 +1,6 @@
 package tk.codedojo.beans;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -11,15 +8,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="Food_Item")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class FoodItem implements Serializable {
 	private static final long serialVersionUID = -6437357436131993928L;
 	@Id
 	@Column(name="MI_ID")
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name="MI_Name")
 	private String name;

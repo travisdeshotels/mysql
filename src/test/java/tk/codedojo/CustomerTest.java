@@ -3,7 +3,6 @@ package tk.codedojo;
 import org.junit.Test;
 import tk.codedojo.beans.ContactInfo;
 import tk.codedojo.beans.Customer;
-import tk.codedojo.beans.User;
 import tk.codedojo.dao.ContactInfoDao;
 import tk.codedojo.dao.CustomerDao;
 
