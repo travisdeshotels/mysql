@@ -1,9 +1,6 @@
 package tk.codedojo.beans;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,14 +9,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="Invoice")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Invoice implements Serializable {
 	private static final long serialVersionUID = -5606066870734426992L;
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="Inv_ID")
 	private int id;
 	@Column(name="Total")

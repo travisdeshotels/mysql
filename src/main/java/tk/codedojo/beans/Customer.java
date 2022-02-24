@@ -2,19 +2,17 @@ package tk.codedojo.beans;
 
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name="Customer")
 @PrimaryKeyJoinColumn(name="C_ID")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class Customer extends User {
 	private static final long serialVersionUID = 1951060451225640025L;
 	@Column(name="F_NAME")

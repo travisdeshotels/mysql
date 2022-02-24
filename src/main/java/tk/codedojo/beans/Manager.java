@@ -1,9 +1,6 @@
 package tk.codedojo.beans;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,11 +9,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table
 @PrimaryKeyJoinColumn(name="M_ID")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Manager extends User {
