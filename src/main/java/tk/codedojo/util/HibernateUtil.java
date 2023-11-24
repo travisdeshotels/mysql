@@ -12,6 +12,9 @@ public class HibernateUtil {
     public SessionFactory getSessionFactory(){
         if(sessionFactory==null){
             Configuration conf = new Configuration().configure();
+			conf.setProperty("hibernate.connection.url", System.getenv("DB_URL"));
+			conf.setProperty("hibernate.connection.username", System.getenv("DB_USERNAME"));
+			conf.setProperty("hibernate.connection.password", System.getenv("DB_PASSWORD"));
             conf.addAnnotatedClass(tk.codedojo.beans.ContactInfo.class);
             conf.addAnnotatedClass(tk.codedojo.beans.Restaurant.class);
             conf.addAnnotatedClass(tk.codedojo.beans.FoodItem.class);

@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  mydbhost:
+    build:
+      context: ./db
+      args:
+        - MYSQL_DATABASE=${MYSQL_DATABASE}
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "${MYSQL_PORT}:3306"
+
+  service:
+    build:
+      context: .
+      args:
+        - DB_URL=${DB_URL}
+        - DB_USERNAME=${DB_USERNAME}
+        - DB_PASSWORD=${DB_PASSWORD}
+    depends_on:
+      - mydbhost
