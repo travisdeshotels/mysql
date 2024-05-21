@@ -9,9 +9,35 @@ Project uses
 ## Docker
 
 ### Start database
-`docker build -t mysql-db .`
-`docker run --net mysqlnet --name foodmysqldb -p 3306:3306 -e MYSQL_DATABASE=${MYSQL_DATABASE} -e MYSQL_USER=${MYSQL_USER} -e MYSQL_PASSWORD=${MYSQL_PASSWORD} -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} mysql-db`
+```
+docker build -t mysql-db .
+```
+```
+docker run --net mysqlnet --name foodmysqldb -p 3306:3306 -e MYSQL_DATABASE=${MYSQL_DATABASE} -e MYSQL_USER=${MYSQL_USER} -e MYSQL_PASSWORD=${MYSQL_PASSWORD} -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} mysql-db
+```
 
 ### Run tests with Maven
-`docker build -t mysql-test-img .`
-`docker run --net mysqlnet --name foodmysql mysql-test-img`
+```
+docker build -t mysql-test-img .
+```
+```
+docker run --net mysqlnet --name foodmysql mysql-test-img
+```
+
+## Docker Compose
+Create .env file in the project root and define these variables
+```
+MYSQL_DATABASE=<fill_in>
+MYSQL_USER=<fill_in>
+MYSQL_PASSWORD=<fill_in>
+MYSQL_ROOT_PASSWORD=<fill_in>
+MYSQL_PORT=<fill_in>
+
+DB_URL=<fill_in>
+DB_USERNAME=<fill_in>
+DB_PASSWORD=<fill_in>
+```
+
+Then run `docker-compose up`
+
+Tests fail the first run since the database isn't up yet, so rerun them.
